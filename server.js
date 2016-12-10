@@ -15,13 +15,6 @@ var Trips= require('./Models/tripModel');
 
 var app= express();
 
-var port= process.env.OPENSHIFT_NODEJS_PORT|| process.env.PORT || 8080;
-
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
- 
-server.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", port " + port )
-});
 
 app.use(bodyParser.urlencoded({extend:true}));
 app.use(bodyParser.json());
@@ -50,3 +43,10 @@ app.get('/', function(req, res){                                                
   //  console.log('Gulp is running  on Port:'+ port);
 
 //});
+var port= process.env.PORT || 8080;
+
+
+ 
+server.listen(server_port,  function () {
+  console.log( "Listening on port " + port );6
+});
