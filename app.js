@@ -6,7 +6,7 @@ var express = require('express'),
     session= require('express-session');
 
 
-var db=mongoose.connect('mongodb://localhost/locationsAPI');
+var db=mongoose.connect('mongodb://Peldorri:childrenf5@ds113678.mlab.com:13678/locationsapi');
 
 
 var Users= require('./Models/userModel');
@@ -15,7 +15,9 @@ var Trips= require('./Models/tripModel');
 
 var app= express();
 
-var port= process.env.PORT || 3000;
+var port= process.env.OPENSHIFT_NODEJS_PORT|| process.env.PORT ||
+          process.env.WEB_PORT || 8080;
+
 
 app.use(bodyParser.urlencoded({extend:true}));
 app.use(bodyParser.json());
