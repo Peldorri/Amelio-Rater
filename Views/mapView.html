@@ -47,12 +47,9 @@
         viewCarMarkerS();
         viewCarMarkerW();
         var i;
-       for(i=0; i<array.length;i++)
 
-      {
-          //TODO: body...
-
-           (function(i){
+        for(i=0; i<array.length;i++){
+           (function (i) {
               setTimeout(function () {
 
                 clearMarkers();
@@ -88,7 +85,7 @@
              }, 1500*i);
          })(i);
 
-      }
+       }
     }
 
     function viewCarMarkerN(){

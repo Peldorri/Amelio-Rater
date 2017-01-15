@@ -12,6 +12,7 @@ var userController= require('../Controllers/userController')(Users);
   userRouters.route('/:userId/trip')
               .post(userController.pushTrips);
 
+
   userRouters.route('/:userId/location')
               .patch(userController.upadateArray);
 
@@ -32,9 +33,15 @@ var userController= require('../Controllers/userController')(Users);
 
   });
   userRouters.route('/:userId')
+
             .get(function(req,res){
                 res.json(req.user);
             })
+
+          /*  .get(function(req,res){
+                res.json(req.user);
+            })*/
+
             .patch(userController.patch)
             .delete(userController.delete);
 
