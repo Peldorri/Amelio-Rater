@@ -12,6 +12,9 @@ var userController= require('../Controllers/userController')(Users);
   userRouters.route('/:userId/trip')
               .post(userController.pushTrips);
 
+  userRouters.route('/:userId/location')
+              .patch(userController.upadateArray);
+
   userRouters.use('/:userId',function(req,res,next){
         Users.findById(req.params.userId,function(err,user){
             if(err)
@@ -29,9 +32,9 @@ var userController= require('../Controllers/userController')(Users);
 
   });
   userRouters.route('/:userId')
-          /*  .get(function(req,res){
+            .get(function(req,res){
                 res.json(req.user);
-            })*/
+            })
             .patch(userController.patch)
             .delete(userController.delete);
 

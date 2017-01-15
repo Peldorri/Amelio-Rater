@@ -47,8 +47,12 @@
         viewCarMarkerS();
         viewCarMarkerW();
         var i;
-        for(i=0; i<array.length;i++){
-           (function (i) {
+       for(i=0; i<array.length;i++)
+
+      {
+          //TODO: body...
+
+           (function(i){
               setTimeout(function () {
 
                 clearMarkers();
@@ -84,12 +88,12 @@
              }, 1500*i);
          })(i);
 
-       }
+      }
     }
 
     function viewCarMarkerN(){
        image = {
-        url: 'file:///C:/Users/user/Amelio-Rater-master/Views/images.png',
+        url: 'file:///C:/Users/user/Amelio-Rater/Views/images.png',
         size: new google.maps.Size(100,100),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(0, 32)
@@ -98,7 +102,7 @@
 
     function viewCarMarkerW(){
        image1 = {
-        url: 'file:///C:/Users/user/Amelio-Rater-master/Views/car3.png',
+        url: 'file:///C:/Users/user/Amelio-Rater/Views/car3.png',
         size: new google.maps.Size(100,100),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(0, 32)
@@ -106,7 +110,7 @@
     }
     function viewCarMarkerS(){
        image2 = {
-        url: 'file:///C:/Users/user/Amelio-Rater-master/Views/car4.png',
+        url: 'file:///C:/Users/user/Amelio-Rater/Views/car4.png',
         size: new google.maps.Size(100,100),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(0, 32)

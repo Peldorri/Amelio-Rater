@@ -29,6 +29,13 @@ var userController= function(Users){
     });
   }
 
+  var upadateArray= function(req,res){
+      Users.findByIdAndUpdate(req.params.userId,{"$push":{"location":req.body.location}}, {"upsert":true,"new":true},function(err,s){
+        res.status(200).json(s);
+      });
+
+  }
+
   var patch =(function(req,res){
     if(req.body._id)
         delete req.body._id;
@@ -89,7 +96,8 @@ var userController= function(Users){
     patch:patch,
     delete:remove,
     pushTrips:pushTrips,
-    getLocations:getLocations
+    getLocations:getLocations,
+    upadateArray:upadateArray
   }
 }
 module.exports=userController;
