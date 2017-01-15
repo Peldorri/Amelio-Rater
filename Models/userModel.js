@@ -6,6 +6,7 @@ var subLocation = {
     lat: Number,
     long: Number,
     timestamp:{type: Date, default: Date.now},
+    adb: String,
      _id : false
  };
 var user = new Schema({
