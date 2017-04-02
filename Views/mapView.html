@@ -127,7 +127,7 @@
 
         });
         markerN = {
-        url: '/static/img/blue.png',
+        url: '/static/img/car33.png',
         size: new google.maps.Size(100,100),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(0, 32)
@@ -159,14 +159,16 @@
           marker = new google.maps.Marker({
            position: uluru,
            map:map,
-           icon:markerN
+           icon:markerN,
+           zoom:14
          });
        }
        else if(location.adb =='W'){
          marker = new google.maps.Marker({
           position: uluru,
           map:map,
-          icon:markerW
+          icon:markerW,
+          zoom:14
         });
 
        }
@@ -174,13 +176,15 @@
          marker = new google.maps.Marker({
           position: uluru,
           map:map,
-          icon:markerSL
+          icon:markerSL,
+          zoom:14
         });}
         else{
           marker = new google.maps.Marker({
            position: uluru,
            map:map,
-           icon:markerSW
+           icon:markerSW,
+           zoom:14
          });
 
 
