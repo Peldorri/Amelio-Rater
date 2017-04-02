@@ -56,7 +56,7 @@ app.use('/api/consumer',consumerRouters);
 app.use('/api/trip',tripRouters);
 
 
-app.get('/app', function(req, res){                                                 //req is the request sent by the client, res is the respons that gonna be send back
+app.get('/', function(req, res){                                                 //req is the request sent by the client, res is the respons that gonna be send back
 
     if(req.user){
       fs.readFile('Views/mapView.html', function (err, html) {

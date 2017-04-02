@@ -30,7 +30,7 @@ jQuery(document).ready(function() {
 				var settings = {
 			  "async": true,
 			  "crossDomain": true,
-			  "url": "http://localhost:8000/user/login",
+			  "url": "https://fierce-refuge-50550.herokuapp.com/user/login",
 			  "method": "POST",
 			  "headers": {
 			    "content-type": "application/x-www-form-urlencoded",
@@ -44,7 +44,7 @@ jQuery(document).ready(function() {
 
 			$.ajax(settings).done(function (response) {
 			  if(response._id){
-					window.location.href = "http://localhost:8000/";												//replace localhost 
+					window.location.href = "https://fierce-refuge-50550.herokuapp.com";												//replace localhost
 				} else{
 					$("#form-error").show();
 				}
