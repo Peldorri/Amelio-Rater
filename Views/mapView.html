@@ -59,7 +59,7 @@
           <div class="row">
             <div class="col-md-12" style="margin-left: 0.2cm">
               <h3>Amelio-Rater Real Time Monitoring</h3>
-            
+
               <div id="map"></div>
               <div>
                 <form>
@@ -113,8 +113,9 @@
       var timer;
       var markers=[];
       var markerN;
-      var  markerW;
-      var markerS;
+      var markerW;
+      var markerSW;
+      var markerSL;
       var uluru;
 
       function initMap() {
@@ -132,7 +133,7 @@
         anchor: new google.maps.Point(0, 32)
        };
          markerW = {
-         url: '/static/img/blue.png',
+         url: '/static/img/red.png',
          size: new google.maps.Size(100,100),
          origin: new google.maps.Point(0, 0),
          anchor: new google.maps.Point(0, 32)
