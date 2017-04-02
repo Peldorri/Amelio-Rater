@@ -3,8 +3,8 @@ var mongoose= require('mongoose'),
     Schema=mongoose.Schema;
 
 var subLocation = {
-    lat: String,
-    long: String,
+    lat: Number,
+    long: Number,
     adb: String,
     timestamp:{type: Date, default: Date.now},
      _id : false
