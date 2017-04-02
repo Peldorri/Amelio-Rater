@@ -100,7 +100,7 @@
   </script>
     <script>
       var map;
-      var url = "http://localhost:8000/api/user/584093f96ceb1228fc6cff6e/locations";
+    //  var url = "http://localhost:8000/api/user/584093f96ceb1228fc6cff6e/locations";
       var array= [];
       var marker;
       var timer;
@@ -179,7 +179,8 @@
     }
     </script>
     <script>
-      var socket = io.connect('http://localhost');                                 //webhost
+    //  var socket = io.connect('http://localhost');
+      var socket = io.connect('https://arcane-tundra-41511.herokuapp.com/');                                 //webhost
       socket.on('trips', function (trips) {
         clearMarkers()
         $.each(trips, function(idx, val){
