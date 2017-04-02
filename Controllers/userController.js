@@ -3,7 +3,7 @@ var Trips= require('../Models/tripModel');
 var userController= function(Users){
 
     var post= function(req,res){
-
+      console.log(req.body)
       var user=new Users(req.body);
 
       user.save();
@@ -76,7 +76,8 @@ var userController= function(Users){
         }
       });
   });
-  var getLocations=(function(req,res){
+  var getUserLocations=(function(req,res){
+    console.log("enter");
     Users.findById(req.params.userId,'location',function(err,location){
       if(err)
         res.status(500).send(err);
@@ -96,7 +97,7 @@ var userController= function(Users){
     patch:patch,
     delete:remove,
     pushTrips:pushTrips,
-    getLocations:getLocations,
+    getLocations:getUserLocations,
     upadateArray:upadateArray
   }
 }

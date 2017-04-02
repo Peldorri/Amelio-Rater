@@ -1,34 +1,115 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <style>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Real Time Monitoring</title>
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="/static/css/mapview.css">
+  <link rel="stylesheet" href="/static/css/searchCSS.css">
+  <link rel="stylesheet" href="/static/css/driverDetailsCSS.css">
+
+  <style>
       #map {
         height: 400px;
         width: 100%;
        }
 
+
+      .foo {
+        float: left;
+        width: 20px;
+        height: 20px;
+        margin: 5px;
+        border: 1px solid rgba(0, 0, 0, .2);
+      }
+
+      .red {
+        background: #f00;
+      }
+
+      .yellow {
+        background: #ff0;
+      }
+
+      .blue {
+        background: #00f;
+      }
+
     </style>
-  </head>
-  <body>
-    <h3>Amelio-Rater Maps</h3>
-    <Button class='start' type='submit' onClick='addMarker()'> Start </Button>
+</head>
 
-    <div id="map">
+<body>
+  <div class="site-wrap">
+    <nav>
+      <ul>
+        <li><a href="#">Monitor</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Sign Out</a></li>
+      </ul>
+    </nav>
 
+    <div class="push-wrap">
+      <article>
+        <a href="#" class="toggle-nav"><i class="fa fa-bars"></i></a>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12" style="margin-left: 0.2cm">
+              <h3>Amelio-Rater Real Time Monitoring</h3>
+              <Button class='start' type='submit' onClick='addMarker()'> Start </Button>
+              <div id="map"></div>
+              <div>
+                <form>
+                  <fieldset>
+                  <legend>Colour Legend for each Behaviour</legend>
+                    <div>
+                        <div class="foo red"></div>
+                        <h3>Weaving</h3>
+                    </div>
+                    <div>
+                        <div class="foo yellow"></div>
+                        <h3>Speeding</h3>
+                    </div>
+                    <div>
+                        <div class="foo blue"></div>
+                        <h3>SCL</h3>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script>
 
+
+
+
+  </div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="/static/js/index.js"></script>
+  <script src="/static/js/driverDetailsJS.js"></script>
+  <script src="/static/js/socket.io.js"></script>
+  <div class="byline"><p>search box by <a href="http://speckyboy.com/2012/02/15/how-to-build-a-stylish-css3-search-box/">SpeckyBoy</a> featured on <a href="http://thecodeblock.com/search-box-tutorials-using-css3-jquery/">THE CODE BLOCK</a></p></div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnJxXNBwzbK-97UIHKeP5orwNTRydC5hE&callback=initMap">
+  </script>
+    <script>
       var map;
-      var url = "http://192.168.56.1:8000/api/user/584093f96ceb1228fc6cff6e/locations";
+      var url = "http://localhost:8000/api/user/584093f96ceb1228fc6cff6e/locations";
       var array= [];
       var marker;
       var timer;
       var markers=[];
-      var image;
-      var image1;
-      var image2;
+      var markerN;
+      var  markerW;
+      var markerS;
       var uluru;
+
       function initMap() {
 
          var uluru = {lat: 30.1993, lng: 30.1556};
@@ -37,82 +118,55 @@
           center: uluru
 
         });
-         map: map
-         //addMarker();
+        markerN = {
+        url: '/static/img/images.png',
+        size: new google.maps.Size(100,100),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 32)
+       };
+         markerW = {
+         url: '/static/img/car3.png',
+         size: new google.maps.Size(100,100),
+         origin: new google.maps.Point(0, 0),
+         anchor: new google.maps.Point(0, 32)
+       };
+        markerS = {
+           url:'/static/img/car4.png',
+           size: new google.maps.Size(100,100),
+           origin: new google.maps.Point(0, 0),
+           anchor: new google.maps.Point(0, 32)
+         };
 
       }
-      function addMarker(){
 
-        viewCarMarkerN();
-        viewCarMarkerS();
-        viewCarMarkerW();
-        var i;
-
-        for(i=0; i<array.length;i++){
-           (function (i) {
-              setTimeout(function () {
-
-                clearMarkers();
-                console.log(array[i].lat);
-                if(array[i].adb=='N'){
-                  uluru = {lat: array[i].lat, lng: array[i].long};
-                  marker = new google.maps.Marker({
-                   position: uluru,
-                   map:map,
-                   icon:image
-                 });
-               }
-               else if(array[i].adb=='W'){
-                 uluru = {lat: array[i].lat, lng: array[i].long};
-                 marker = new google.maps.Marker({
-                  position: uluru,
-                  map:map,
-                  icon:image1
-                });
-
-               }
-               else{
-                 uluru = {lat: array[i].lat, lng: array[i].long};
-                 marker = new google.maps.Marker({
-                  position: uluru,
-                  map:map,
-                  icon:image2
-                });
-               }
-               map.setCenter(new google.maps.LatLng(uluru.lat,uluru.lng));
-               map.setZoom(17);
-               markers.push(marker);
-             }, 1500*i);
-         })(i);
+      function addMarker(location) {
+          uluru = {lat: location.lat, lng: location.long};
+        if(location.adb =='N'){
+          marker = new google.maps.Marker({
+           position: uluru,
+           map:map,
+           icon:markerN
+         });
+       }
+       else if(location.adb =='W'){
+         marker = new google.maps.Marker({
+          position: uluru,
+          map:map,
+          icon:markerW
+        });
 
        }
+       else{
+         marker = new google.maps.Marker({
+          position: uluru,
+          map:map,
+          icon:markerS
+        });
+      }
+      markers.push(marker);
     }
 
-    function viewCarMarkerN(){
-       image = {
-        url: 'file:///C:/Users/user/Amelio-Rater/Views/images.png',
-        size: new google.maps.Size(100,100),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(0, 32)
-      };
-    }
 
-    function viewCarMarkerW(){
-       image1 = {
-        url: 'file:///C:/Users/user/Amelio-Rater/Views/car3.png',
-        size: new google.maps.Size(100,100),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(0, 32)
-      };
-    }
-    function viewCarMarkerS(){
-       image2 = {
-        url: 'file:///C:/Users/user/Amelio-Rater/Views/car4.png',
-        size: new google.maps.Size(100,100),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(0, 32)
-      };
-    }
     function setMapOnAll(map) {
       for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(map);
@@ -123,28 +177,20 @@
     function clearMarkers() {
       setMapOnAll(null);
     }
-
-
-
-    $(document).ready(function (){
-        $(".start").click(function(){
-          $.get((url),function(data, status){
-              console.log(data);
-
-              $.each(data.location, function (index, location) {
-              array.push(location);
-
-            });
-            console.log(array);
-
-
-            });
-          });
-        });
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnJxXNBwzbK-97UIHKeP5orwNTRydC5hE&callback=initMap">
+    <script>
+      var socket = io.connect('http://localhost');                                 //webhost
+      socket.on('trips', function (trips) {
+        clearMarkers()
+        $.each(trips, function(idx, val){
+          addMarker(val.currentLocation[0]);
+        })
+        setTimeout(function () {
+          socket.emit('pullTrips');
+        }, 200);
+      });
+      socket.emit('pullTrips');
     </script>
 
-  </body>
+</body>
 </html>

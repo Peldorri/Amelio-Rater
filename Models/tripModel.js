@@ -1,59 +1,52 @@
 var mongoose= require('mongoose'),
+    behaviour= require('./behaviourModel'),
     Schema=mongoose.Schema;
 
 var subLocation = {
     lat: Number,
     long: Number,
+    adb: String,
     timestamp:{type: Date, default: Date.now},
      _id : false
 };
 
 var subSensorReadings = {
-    accelrometer:[{
+    accelerometer:[{
       x: {type: Number},
       y: {type: Number},
       z: {type: Number},
+      timestamp:{type: Date, default: Date.now},
        _id : false
     }],
     gyroscope:[{
       x: {type: Number},
       y: {type: Number},
       z: {type: Number},
+      timestamp:{type: Date, default: Date.now},
        _id : false
     }],
-    timestamp:{type: Date, default: Date.now},
+
      _id : false
 };
 
-var subBehaviour = {
-    name: String,
-    behaviourFile: String,
-     _id : false
-
-};
 var subBehaviourType = {
     ADBType:String,
-    behviour: [subBehaviour],
+  //  behviour: [subBehaviour],
      _id : false
 };
 
 var trip= new Schema({
-    startTime: {type: Date, default: Date.now},
-    endTime: {type: Date, default: Date.now},
-    startLocation:[{
-        lat:{type: Number},
-        long:{type: Number},
-        timestamp:{type: Date, default: Date.now}
-    }],
-    endLocation:[{
-        lat:{type: Number},
-        long:{type: Number},
-        timestamp:{type: Date, default: Date.now}
-    }],
+    startTime: {type: Date ,default: Date.now} ,
+    endTime: {type: Date},
+    startLocation:[subLocation],
+    endLocation:[subLocation],
     tripRating: Number,
     sensorReadings:[subSensorReadings],
-    currentLocation:[subLocation],
-    BehaviourType: [subBehaviourType]
+    currentLocation:[subLocation]
+  //  behaviour : [{ type: Schema.Types.ObjectId, ref: 'behaviour' }]
 
+},
+{
+ timestamps: true
 });
 module.exports= mongoose.model('Trip', trip);

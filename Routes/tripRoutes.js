@@ -26,6 +26,11 @@ var tripController= require('../Controllers/tripController')(Trips);
         });
 
   });
+
+  tripRouters.route('/:tripId/currentlocation')
+              .post(tripController.upadateArray);
+
+
   tripRouters.route('/:tripId')
             .get(function(req,res){
                 res.json(req.trip);
