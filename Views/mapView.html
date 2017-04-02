@@ -35,6 +35,9 @@
       .blue {
         background: #00f;
       }
+      .green{
+        background:#0F0;
+      }
 
     </style>
 </head>
@@ -63,16 +66,20 @@
                   <fieldset>
                   <legend>Colour Legend for each Behaviour</legend>
                     <div>
+                        <div class="foo blue"></div>
+                        <h3>Normal</h3>
+                    </div>
+                    <div>
                         <div class="foo red"></div>
                         <h3>Weaving</h3>
                     </div>
                     <div>
                         <div class="foo yellow"></div>
-                        <h3>Speeding</h3>
+                        <h3>Sudden Lane Change</h3>
                     </div>
                     <div>
-                        <div class="foo blue"></div>
-                        <h3>SCL</h3>
+                        <div class="foo green"></div>
+                        <h3>Single Weaving</h3>
                     </div>
                   </fieldset>
                 </form>
@@ -119,23 +126,29 @@
 
         });
         markerN = {
-        url: '/static/img/images.png',
+        url: '/static/img/blue.png',
         size: new google.maps.Size(100,100),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(0, 32)
        };
          markerW = {
-         url: '/static/img/car3.png',
+         url: '/static/img/red.png',
          size: new google.maps.Size(100,100),
          origin: new google.maps.Point(0, 0),
          anchor: new google.maps.Point(0, 32)
        };
-        markerS = {
-           url:'/static/img/car4.png',
+        markerSL = {
+           url:'/static/img/yellow.png',
            size: new google.maps.Size(100,100),
            origin: new google.maps.Point(0, 0),
            anchor: new google.maps.Point(0, 32)
          };
+         markerSW = {
+            url:'/static/img/green.png',
+            size: new google.maps.Size(90,90),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 32)
+          };
 
       }
 
@@ -156,12 +169,20 @@
         });
 
        }
-       else{
+       else if(location.adb =='SL'){
          marker = new google.maps.Marker({
           position: uluru,
           map:map,
-          icon:markerS
+          icon:markerSL
         });
+        else {
+          marker = new google.maps.Marker({
+           position: uluru,
+           map:map,
+           icon:markerSW
+         });
+
+
       }
       markers.push(marker);
     }
