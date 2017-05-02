@@ -10,16 +10,16 @@ var subLocation = {
      _id : false
 };
  var subAccelerometer ={
-   x: {type: Number},
-   y: {type: Number},
-   z: {type: Number},
+   x: String,
+   y: String,
+   z: String,
    //timestamp:{type: Date, default: Date.now},
     _id : false
  };
  var subGyroscope ={
-   x: {type: Number},
-   y: {type: Number},
-   z: {type: Number},
+   x: String,
+   y: String,
+   z: String,
    //timestamp:{type: Date, default: Date.now},
     _id : false
  };

@@ -42,21 +42,21 @@ var tripController= function(Trips){
 
 
   var upadateLocArray= function(req,res){
-      Trips.findByIdAndUpdate(req.params.tripId,{"$push":{"currentLocation":req.body.currentLocation}, "$set":{updatedAt:Date.now()}}, {"upsert":true,"new":true},function(err,s){
+      Trips.findByIdAndUpdate(req.params.tripId,{"$push":{"currentLocation":req.body}, "$set":{updatedAt:Date.now()}}, {"upsert":true,"new":true},function(err,s){
         res.status(200).json(s);
       });
 
   }
 
   var upadateGyroArray= function(req,res){
-      Trips.findByIdAndUpdate(req.params.tripId,{"$push":{"gyroscope":req.body.gyroscope}, "$set":{updatedAt:Date.now()}}, {"upsert":true,"new":true},function(err,s){
+      Trips.findByIdAndUpdate(req.params.tripId,{"$push":{"gyroscope":req.body}, "$set":{updatedAt:Date.now()}}, {"upsert":true,"new":true},function(err,s){
         res.status(200).json(s);
       });
 
   }
 
   var upadateAccArray= function(req,res){
-      Trips.findByIdAndUpdate(req.params.tripId,{"$push":{"accelerometer":req.body.accelerometer}, "$set":{updatedAt:Date.now()}}, {"upsert":true,"new":true},function(err,s){
+      Trips.findByIdAndUpdate(req.params.tripId,{"$push":{"accelerometer":req.body}, "$set":{updatedAt:Date.now()}}, {"upsert":true,"new":true},function(err,s){
         res.status(200).json(s);
       });
 
