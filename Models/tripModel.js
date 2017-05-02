@@ -3,9 +3,9 @@ var mongoose= require('mongoose'),
     Schema=mongoose.Schema;
 
 var subLocation = {
-    lat: Number,
-    long: Number,
-    adb: String,
+    lat: String,
+    long: String,
+  //  adb: String,
     timestamp:{type: Date, default: Date.now},
      _id : false
 };
@@ -15,14 +15,15 @@ var subSensorReadings = {
       x: {type: Number},
       y: {type: Number},
       z: {type: Number},
-      timestamp:{type: Date, default: Date.now},
+      //timestamp:{type: Date, default: Date.now},
        _id : false
     }],
     gyroscope:[{
       x: {type: Number},
       y: {type: Number},
       z: {type: Number},
-      timestamp:{type: Date, default: Date.now},
+      location:[subLocation],
+    //  timestamp:{type: Date, default: Date.now},
        _id : false
     }],
 

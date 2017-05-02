@@ -18,6 +18,7 @@ var db=mongoose.connect('mongodb://Peldorri:childrenf5@ds113678.mlab.com:13678/l
 var Users= require('./Models/userModel');
 var Consumers= require('./Models/consumerModel');
 var Trips= require('./Models/tripModel');
+var Adb= require('./Models/adbModel')
 
 var app= express();
 app.use(cors());
@@ -49,12 +50,12 @@ var passportR =require('./Config/passport')(app);
 var userRouters=require('./Routes/userRoutes')(Users);
 var consumerRouters=require('./Routes/consumerRoutes')(Consumers);
 var tripRouters=require('./Routes/tripRoutes')(Trips);
-
+var adbRouters=require('./Routes/adbRoutes')(Adb);
 
 app.use('/api/user',userRouters);
 app.use('/api/consumer',consumerRouters);
 app.use('/api/trip',tripRouters);
-
+app.use('/api/adb',adbRouters);
 
 app.get('/', function(req, res){                                                 //req is the request sent by the client, res is the respons that gonna be send back
 
