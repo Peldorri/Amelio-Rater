@@ -9,6 +9,20 @@ var subLocation = {
     timestamp:{type: Date, default: Date.now},
      _id : false
 };
+ var subAccelerometer ={
+   x: {type: Number},
+   y: {type: Number},
+   z: {type: Number},
+   //timestamp:{type: Date, default: Date.now},
+    _id : false
+ };
+ var subGyroscope ={
+   x: {type: Number},
+   y: {type: Number},
+   z: {type: Number},
+   //timestamp:{type: Date, default: Date.now},
+    _id : false
+ };
 
 var subSensorReadings = {
     accelerometer:[{
@@ -42,8 +56,10 @@ var trip= new Schema({
     startLocation:[subLocation],
     endLocation:[subLocation],
     tripRating: Number,
-    sensorReadings:[subSensorReadings],
-    currentLocation:[subLocation]
+    //sensorReadings:[subSensorReadings],
+    currentLocation:[subLocation],
+    gyroscope: [subGyroscope],
+    accelerometer: [subAccelerometer]
   //  behaviour : [{ type: Schema.Types.ObjectId, ref: 'behaviour' }]
 
 },

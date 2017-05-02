@@ -41,13 +41,26 @@ var tripController= function(Trips){
   });
 
 
-  var upadateArray= function(req,res){
-      Trips.findByIdAndUpdate(req.params.tripId,{"$push":{"currentLocation":req.body}, "$set":{updatedAt:Date.now()}}, {"upsert":true,"new":true},function(err,s){
+  var upadateLocArray= function(req,res){
+      Trips.findByIdAndUpdate(req.params.tripId,{"$push":{"currentLocation":req.body.currentLocation}, "$set":{updatedAt:Date.now()}}, {"upsert":true,"new":true},function(err,s){
         res.status(200).json(s);
       });
 
   }
 
+  var upadateGyroArray= function(req,res){
+      Trips.findByIdAndUpdate(req.params.tripId,{"$push":{"gyroscope":req.body.gyroscope}, "$set":{updatedAt:Date.now()}}, {"upsert":true,"new":true},function(err,s){
+        res.status(200).json(s);
+      });
+
+  }
+
+  var upadateAccArray= function(req,res){
+      Trips.findByIdAndUpdate(req.params.tripId,{"$push":{"accelerometer":req.body.accelerometer}, "$set":{updatedAt:Date.now()}}, {"upsert":true,"new":true},function(err,s){
+        res.status(200).json(s);
+      });
+
+  }
   var remove =(function(req,res){
         var id = req.params.tripId;
         Trips.findByIdAndRemove(id, {},function(err,docs){
@@ -65,7 +78,9 @@ var tripController= function(Trips){
     get:get,
     patch:patch,
     delete: remove,
-    upadateArray:upadateArray
+    upadateLocArray:upadateLocArray,
+    upadateGyroArray:upadateGyroArray,
+    upadateAccArray:upadateAccArray
 
   }
 }

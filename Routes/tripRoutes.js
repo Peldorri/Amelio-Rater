@@ -28,7 +28,13 @@ var tripController= require('../Controllers/tripController')(Trips);
   });
 
   tripRouters.route('/:tripId/currentlocation')
-              .post(tripController.upadateArray);
+              .post(tripController.upadateLocArray);
+
+  tripRouters.route('/:tripId/accelerometer')
+              .post(tripController.upadateAccArray);
+
+  tripRouters.route('/:tripId/gyroscope')
+              .post(tripController.upadateGyroArray);
 
 
   tripRouters.route('/:tripId')
