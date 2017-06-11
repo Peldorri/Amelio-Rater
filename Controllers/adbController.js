@@ -1,4 +1,6 @@
 var Trips= require('../Models/tripModel');
+var User= require('../Models/userModel');
+
 var adbController= function(Adb){
 
     var post= function(req,res){
@@ -28,6 +30,62 @@ var adbController= function(Adb){
     });
   }
 
+  var getTrip= function(req,res){
+    User.findById(req.params.userId, function (err, user) {
+      if (err)
+        res.status(500).send(err);
+      else {
+        var trips = user.trips;
+        Adb.find({"trip":{"$elemMatch":{"$in":trips}}}, function (err, trip){
+          if(err)
+            res.status(500).send(err);
+          else{
+            var sCount=0;
+            var slCount=0;
+            var wCount=0;
+            var sbCount=0;
+            var nCount=0;
+            var result=0;
+            for (var i = 0; i < trip.length; i++) {
+              for (var j = 0; j < trip[i].adbLocations.length; j++) {
+                if(trip[i].adbLocations[j].adb=="S")
+                {
+                  sCount++;
+                }
+                else if(trip[i].adbLocations[j].adb=="SL")
+                {
+                  slCount++;
+                }
+                else if(trip[i].adbLocations[j].adb=="W")
+                {
+                  wCount++;
+                }
+                else if(trip[i].adbLocations[j].adb=="SB")
+                {
+                  sbCount++;
+                }
+                else{
+                   nCount++;
+                }
+
+              }
+
+            }
+            result= ((sCount)+(wCount)+(sbCount)+(slCount))/trip.length;
+
+            res.json({
+              sCount: sCount,
+              slCount: slCount,
+              wCount:wCount,
+              sbCount:sbCount,
+              nCount:nCount,
+              result:result
+            });
+          }
+        });
+      }
+    });
+  }
   var patch =(function(req,res){
     if(req.body._id)
         delete req.body._id;
@@ -36,7 +94,9 @@ var adbController= function(Adb){
         if(err)
             res.status(500).send(err);
         else{
+
             res.json(req.adb);
+
         }
       });
   });
@@ -84,7 +144,8 @@ var adbController= function(Adb){
     patch:patch,
     delete: remove,
     upadateArray:upadateArray,
-    pushTrips: pushTrips
+    pushTrips: pushTrips,
+    getTrip:getTrip
   }
 }
 

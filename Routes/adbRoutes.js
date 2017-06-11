@@ -10,6 +10,9 @@ var adbController= require('../Controllers/adbController')(Adb);
             .get(adbController.get);
 
 
+              adbRouters.route('/rating/:userId')
+                          .get(adbController.getTrip);
+
   adbRouters.use('/:adbId',function(req,res,next){
         Adb.findById(req.params.adbId,function(err,adb){
             if(err)
@@ -27,18 +30,21 @@ var adbController= require('../Controllers/adbController')(Adb);
 
   });
 
+
   adbRouters.route('/:adbId/currentlocation')
               .post(adbController.upadateArray);
 
   adbRouters.route('/:adbId/trip')
               .post(adbController.pushTrips);
 
+
   adbRouters.route('/:adbId')
             .get(function(req,res){
                 res.json(req.adb);
-            })
+           })
             .patch(adbController.patch)
             .delete(adbController.delete);
+
         return adbRouters;
 };
 

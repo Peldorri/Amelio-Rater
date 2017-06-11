@@ -7,7 +7,7 @@ var user = new Schema({
     number: String,
     email: String,
     password: String,
-    rate: Number,
+    rate: String,
     trips : [{ type: Schema.Types.ObjectId, ref: 'trip' }]
 });
 
