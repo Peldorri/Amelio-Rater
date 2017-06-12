@@ -15,7 +15,7 @@ var router= function (passport){
       res.write(html);
       res.end();
 });
-  }).post('/user/login', function(req, res, next) {
+  }).post('/user/authlogin', function(req, res, next) {
     passport.authenticate('local-login', function(err, user, info) {
       if (err) { return next(err); }
       if (!user) { return res.status(200).json({})}
