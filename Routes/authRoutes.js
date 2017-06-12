@@ -15,7 +15,7 @@ var router= function (passport){
       res.write(html);
       res.end();
 });
-  }).post('/user/authlogin', function(req, res, next) {
+  }).post('/user/login', function(req, res, next) {
     passport.authenticate('local-login', function(err, user, info) {
       if (err) { return next(err); }
       if (!user) { return res.status(200).json({})}
@@ -26,7 +26,7 @@ var router= function (passport){
     })(req, res, next);
   });
 
-  authRouter.post('/consumer/login', function(req, res, next) {
+  authRouter.post('/user/authlogin', function(req, res, next) {
     passport.authenticate('login', function(err, user, info) {
       if (err) { return next(err); }
       if (!user) { return res.status(200).json({})}

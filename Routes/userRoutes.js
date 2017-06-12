@@ -13,6 +13,9 @@ var userController= require('../Controllers/userController')(Users);
               .post(userController.pushTrips);
 
 
+  userRouters.route('/signup')
+              .post(userController.signup);
+              
   userRouters.route('/:userId/location')
               .patch(userController.upadateArray);
 
