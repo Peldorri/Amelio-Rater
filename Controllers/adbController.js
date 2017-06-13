@@ -8,7 +8,7 @@ var adbController= function(Adb){
       var adb=new Adb(req.body);
 
       adb.save();
-      res.status(201).send(adb);
+      res.status(201).send(adb._id);
     }
 
 
