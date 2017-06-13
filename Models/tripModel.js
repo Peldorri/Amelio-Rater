@@ -5,7 +5,7 @@ var mongoose= require('mongoose'),
 var subLocation = {
     lat: String,
     long: String,
-    adb: String,
+//    adb: String,
     timestamp:{type: Date, default: Date.now},
      _id : false
 };

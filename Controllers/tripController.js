@@ -5,7 +5,7 @@ var tripController= function(Trips){
       var trip=new Trips(req.body);
 
       trip.save();
-      res.status(201).send(trip._id);
+      res.status(201).send(trip);
     }
 
 
