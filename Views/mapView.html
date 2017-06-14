@@ -165,7 +165,7 @@
       }
 
       function addMarker(location) {
-          uluru = {lat: location.lat, lng: location.long};
+          uluru = {lat: parseFloat(location.lat), lng: parseFloat(location.long)};
         if(location.adb =='N'){
           marker = new google.maps.Marker({
            position: uluru,
