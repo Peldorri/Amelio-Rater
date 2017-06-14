@@ -226,7 +226,7 @@
       socket.on('trips', function (trips) {
         clearMarkers()
         $.each(trips, function(idx, val){
-          addMarker(val.currentLocation[0]);
+          addMarker(val.adbLocations[0]);
         })
         setTimeout(function () {
           socket.emit('pullTrips');
