@@ -14,7 +14,7 @@ var subLocation = {
 var adb= new Schema({
 
     adbLocations:[subLocation],
-    trip : [{ type: Schema.Types.ObjectId, ref: 'trip' }]
+    trip : { type: Schema.Types.ObjectId, ref: 'trip' }
 
 },
 {
