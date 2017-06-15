@@ -36,7 +36,9 @@ var adbController= function(Adb){
         res.status(500).send(err);
       else {
         var trips = user.trips;
-        Adb.find({"trip":{"$elemMatch":{"$in":trips}}}, function (err, trip){
+      //  Adb.find({"trip":{"$elemMatch":{"$in":trips}}}, function (err, trip){
+      Adb.find({"trip":{"$in":trips}}, function (err, trip){
+
           if(err)
             res.status(500).send(err);
           else{
@@ -45,7 +47,11 @@ var adbController= function(Adb){
             var wCount=0;
             var sbCount=0;
             var nCount=0;
-            var result=0;
+            var prob=0;
+            var percent=0;
+            var preRate=0;
+            var rate=0;
+            var category;
             for (var i = 0; i < trip.length; i++) {
               for (var j = 0; j < trip[i].adbLocations.length; j++) {
                 if(trip[i].adbLocations[j].adb=="S")
@@ -71,15 +77,35 @@ var adbController= function(Adb){
               }
 
             }
-            result= (sCount+wCount+sbCount+slCount)/(sCount+wCount+sbCount+slCount+nCount);
+            prob= (sCount+wCount+sbCount+slCount)/(sCount+wCount+sbCount+slCount+nCount);
+            percent= prob*100;
+            if(prob>=0 && prob<0.1){
 
+              category="Catious";
+            }
+            else if(prob>=0.2 && prob<0.3){
+              category="Novice";
+            }
+            else if(prob>=0.3 && prob<0.5){
+              category="Intermediate";
+            }
+            else {
+              category="Reckless";
+            }
+
+            preRate= (5*prob);
+            rate=(5-preRate);
             res.json({
               sCount: sCount,
               slCount: slCount,
               wCount:wCount,
               sbCount:sbCount,
               nCount:nCount,
-              result:result
+              prob:prob,
+              category:category,
+              preRate:preRate,
+              rate:rate
+
             });
           }
         });
