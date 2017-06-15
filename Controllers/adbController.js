@@ -71,7 +71,7 @@ var adbController= function(Adb){
               }
 
             }
-            result= ((sCount)+(wCount)+(sbCount)+(slCount))/trip.length;
+            result= (sCount+wCount+sbCount+slCount)/(sCount+wCount+sbCount+slCount+nCount);
 
             res.json({
               sCount: sCount,
