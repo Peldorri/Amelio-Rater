@@ -45,7 +45,7 @@ var adbController= function(Adb){
             var sCount=0;
             var slCount=0;
             var wCount=0;
-            var sbCount=0;
+            var swCount=0;
             var nCount=0;
             var prob=0;
             var percent=0;
@@ -66,9 +66,9 @@ var adbController= function(Adb){
                 {
                   wCount++;
                 }
-                else if(trip[i].adbLocations[j].adb=="SB")
+                else if(trip[i].adbLocations[j].adb=="SW")
                 {
-                  sbCount++;
+                  swCount++;
                 }
                 else{
                    nCount++;
@@ -77,13 +77,13 @@ var adbController= function(Adb){
               }
 
             }
-            prob= (sCount+wCount+sbCount+slCount)/(sCount+wCount+sbCount+slCount+nCount);
+            prob= (sCount+wCount+swCount+slCount)/(sCount+wCount+swCount+slCount+nCount);
             percent= prob*100;
             if(prob>=0 && prob<0.1){
 
               category="Catious";
             }
-            else if(prob>=0.2 && prob<0.3){
+            else if(prob>=0.1 && prob<0.3){
               category="Novice";
             }
             else if(prob>=0.3 && prob<0.5){
@@ -99,7 +99,7 @@ var adbController= function(Adb){
               sCount: sCount,
               slCount: slCount,
               wCount:wCount,
-              sbCount:sbCount,
+              swCount:swCount,
               nCount:nCount,
               prob:prob,
               category:category,
